@@ -1,5 +1,9 @@
 {
   "name": "kinderclinic",
+  "author": {
+    "name": "Sam Sexton",
+    "email": "srsexton94@gmail.com"
+  },
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -10,8 +14,14 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.8.2",
+    "axios": "^1.11.0",
+    "axios-mock-adapter": "^2.1.0",
     "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react-dom": "^19.1.1",
+    "react-hook-form": "^7.62.0",
+    "react-redux": "^9.2.0",
+    "react-router-dom": "^7.8.2"
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
