@@ -1,24 +1,40 @@
+.skeleton-form {
+  display: flex;
+  flex-direction: row;
+  margin: 0 4rem 2rem;
+  gap: 1rem;
+}
 .skeleton-list {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
-  padding: 0 4rem;
+  margin: 0 4rem;
+  padding-top: 2rem;
+  border-top: 1px solid var(--textGrey);
 }
 
 .skeleton-list li {
   list-style: none;
 }
 
-.skeleton-card {
+.skeleton-item {
   border-radius: 0.5rem;
-  width: 12rem;
-  height: 7rem;
   background-color: #e6e9ef;
   position: relative;
   overflow: hidden;
 }
 
-.skeleton-card::after {
+.skeleton-item.card {
+  width: 12rem;
+  height: 7rem;
+}
+
+.skeleton-item.form-el {
+  width: 10rem;
+  height: 3.75rem;
+}
+
+.skeleton-item::after {
   content: "";
   position: absolute;
   top: 0;
