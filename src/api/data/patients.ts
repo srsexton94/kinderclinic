@@ -12,9 +12,9 @@ export interface PatientData {
 }
 
 export interface Patient extends PatientData {
-  id: string,
-  createdAt: Date,
-  modifiedAt: Date,
+  id: string;
+  createdAt: Date;
+  modifiedAt: Date;
 }
 
 export const createPatient = ({
@@ -45,6 +45,7 @@ export const patients = [
     appointments: [
       { datetime: new Date("2023-08-10T09:00:00"), reason: "well" },
       { datetime: new Date("2024-09-05T14:30:00"), reason: "sick" },
+      { datetime: new Date("2025-11-22T10:45:00"), reason: "sick" },
     ],
   }),
   createPatient({
@@ -120,6 +121,7 @@ export const patients = [
     appointments: [
       { datetime: new Date("2024-02-18T14:00:00"), reason: "well" },
       { datetime: new Date("2024-06-05T09:15:00"), reason: "sick" },
+      { datetime: new Date("2026-08-25T18:30:00"), reason: "sick" },
     ],
   }),
   createPatient({
@@ -154,6 +156,9 @@ export const patients = [
     dob: new Date("2019-09-18"),
     appointments: [
       { datetime: new Date("2024-01-30T16:30:00"), reason: "sick" },
+      { datetime: new Date("2025-12-02T08:00:00"), reason: "sick" },
+      { datetime: new Date("2026-01-12T09:30:00"), reason: "sick" },
+      { datetime: new Date("2026-04-02T19:15:00"), reason: "sick" },
     ],
   }),
   createPatient({

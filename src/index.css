@@ -1,0 +1,18 @@
+:root {
+  --lightBlue: #66a3cc;
+  --darkBlue: #063960;
+  --baseWhite: #fefcf9;
+  --errorRed: #ad343e;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  padding: 1rem 2rem;
+  background-color: var(--baseWhite);
+}

@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import "./App.css";
+import logo from "./assets/kinderclinic-logo.png";
 import api from "./api";
 import { seedLocalDatabase } from "./api/data/seed";
 import { type Patient } from "./api/data/patients";
+import PatientList from "./components/PatientList/PatientList";
 
 seedLocalDatabase();
 
@@ -16,10 +18,8 @@ function App() {
       try {
         const response = await api.get("/api/patients");
         setPatients(response.data);
-        console.log("API Response:", response.data);
       } catch (err) {
         if (err instanceof Error) setError(err);
-        console.error("Error fetching data:", err);
       } finally {
         setIsLoading(false);
       }
@@ -28,12 +28,12 @@ function App() {
     fetchData();
   }, []);
 
-  if (error) return <p>An error occurred</p>;
+  if (error) return <p>{error.message}</p>;
 
   return (
     <>
-      <h1>KinderClinic</h1>
-      {isLoading ? <p>Loading...</p> : <pre>{JSON.stringify(patients)}</pre>}
+      <img className="logo" src={logo} alt="Kinder Clinic Logo" />
+      {isLoading ? <p>Loading...</p> : <PatientList patients={patients} />}
     </>
   );
 }

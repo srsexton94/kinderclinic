@@ -1,0 +1,52 @@
+.card {
+  position: relative;
+  border-radius: 0.5rem;
+  width: 12rem;
+  height: 7rem;
+  padding: 0.5rem;
+  box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.2);
+  transition: 0.3s;
+  background-color: white;
+}
+.card:hover {
+  box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.2);
+}
+
+.patient-name {
+  font-size: 1rem;
+}
+
+.upcoming-appointments:has(li) {
+  border: 1px solid #ababab;
+  border-radius: 0.25rem;
+  width: 80%;
+  padding: 0.25rem;
+  margin: 0.125rem;
+  height: 3rem;
+  overflow: scroll;
+}
+.upcoming-appointments li {
+  list-style: none;
+}
+
+.appointment-button {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 0.5rem;
+  padding: 0.5rem;
+  border: 0;
+  border-radius: 0.5rem;
+  background-color: #dcdcdc;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.appointment-button:hover {
+  background-color: #e2e2e2;
+  text-decoration: none;
+  transition-duration: 0.1s;
+}
+.appointment-button:active {
+  background-color: #d3d3d3;
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
+}
