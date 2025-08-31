@@ -5,6 +5,7 @@ import api from "./api";
 import { seedLocalDatabase } from "./api/data/seed";
 import { type Patient } from "./api/data/patients";
 import PatientList from "./components/PatientList/PatientList";
+import SkeletonScreen from "./components/SkeletonScreen/SkeletonScreen";
 
 seedLocalDatabase();
 
@@ -33,7 +34,7 @@ function App() {
   return (
     <>
       <img className="logo" src={logo} alt="Kinder Clinic Logo" />
-      {isLoading ? <p>Loading...</p> : <PatientList patients={patients} />}
+      {isLoading ? <SkeletonScreen /> : <PatientList patients={patients} />}
     </>
   );
 }
