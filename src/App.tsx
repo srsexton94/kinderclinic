@@ -6,6 +6,7 @@ import { seedLocalDatabase } from "./api/data/seed";
 import { type Patient } from "./api/data/patients";
 import PatientList from "./components/PatientList/PatientList";
 import SkeletonScreen from "./components/SkeletonScreen/SkeletonScreen";
+import PatientForm from "./components/PatientForm/PatientForm";
 
 seedLocalDatabase();
 
@@ -34,7 +35,14 @@ function App() {
   return (
     <>
       <img className="logo" src={logo} alt="Kinder Clinic Logo" />
-      {isLoading ? <SkeletonScreen /> : <PatientList patients={patients} />}
+      {isLoading ? (
+        <SkeletonScreen />
+      ) : (
+        <>
+          <PatientForm />
+          <PatientList patients={patients} />
+        </>
+      )}
     </>
   );
 }

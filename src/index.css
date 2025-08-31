@@ -3,6 +3,10 @@
   --darkBlue: #063960;
   --baseWhite: #fefcf9;
   --errorRed: #ad343e;
+  --textGrey: #6f6f6f;
+  --buttonBase: #dcdcdc;
+  --buttonHover: #e2e2e2;
+  --buttonActive: #d3d3d3;
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
@@ -13,6 +17,25 @@
 }
 
 body {
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   background-color: var(--baseWhite);
+}
+
+button {
+  padding: 0.5rem;
+  border: 1px solid var(--buttonBase);
+  border-radius: 0.5rem;
+  background-color: var(--buttonBase);
+  cursor: pointer;
+  font-size: 1rem;
+}
+button:hover {
+  background-color: var(--buttonHover);
+  text-decoration: none;
+  transition-duration: 0.1s;
+}
+button:active {
+  background-color: var(--buttonActive);
+  box-shadow: rgba(225, 228, 232, 0.2) 0 1px 0 inset;
+  transition: none 0s;
 }
