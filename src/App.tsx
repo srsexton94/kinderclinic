@@ -3,7 +3,7 @@ import "./App.css";
 import logo from "./assets/kinderclinic-logo.png";
 import api from "./api";
 import { seedLocalDatabase } from "./api/data/seed";
-import { type Patient } from "./api/data/patients";
+import { type Patient, type PatientData } from "./api/data/patients";
 import PatientList from "./components/PatientList/PatientList";
 import SkeletonScreen from "./components/SkeletonScreen/SkeletonScreen";
 import PatientForm from "./components/PatientForm/PatientForm";
@@ -15,18 +15,30 @@ function App() {
   const [error, setError] = useState<Error | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await api.get("/api/patients");
-        setPatients(response.data);
-      } catch (err) {
-        if (err instanceof Error) setError(err);
-      } finally {
-        setIsLoading(false);
-      }
-    };
+  const fetchData = async () => {
+    try {
+      const response = await api.get("/api/patients");
+      setPatients(response.data.reverse());
+    } catch (err) {
+      if (err instanceof Error) setError(err);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
+  const postData = async (data: PatientData) => {
+    api
+      .post("/api/patients", { ...data, dob: new Date(data.dob) })
+      .catch((err) => setError(err));
+  };
+
+  const handleSubmit = (data: PatientData) => {
+    setIsLoading(true);
+    postData(data);
+    fetchData();
+  };
+
+  useEffect(() => {
     fetchData();
   }, []);
 
@@ -39,7 +51,7 @@ function App() {
         <SkeletonScreen />
       ) : (
         <>
-          <PatientForm />
+          <PatientForm onSubmit={handleSubmit} />
           <PatientList patients={patients} />
         </>
       )}

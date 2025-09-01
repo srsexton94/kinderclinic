@@ -4,6 +4,7 @@ import "./DatePicker.css";
 function DatePicker({
   label = "Select Date",
   name,
+  ...props
 }: {
   label?: string;
   name: string;
@@ -15,7 +16,7 @@ function DatePicker({
       <label className="date-picker-label" htmlFor={inputId}>
         {label}:
       </label>
-      <input type="date" id={inputId} name={name}></input>
+      <input type="date" id={inputId} name={name} {...props}></input>
     </div>
   );
 }

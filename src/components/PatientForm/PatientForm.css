@@ -1,6 +1,7 @@
 .patient-form {
   display: flex;
   flex-direction: row;
+  flex-wrap: wrap;
   margin: 0 4rem 2rem;
   gap: 1rem;
 }

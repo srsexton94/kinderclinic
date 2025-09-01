@@ -12,17 +12,19 @@ function RadioGroup({
   radioName,
   radioButtons,
   isHorizontal = true,
+  ...props
 }: RadioGroupProps) {
   return (
     <fieldset className={`radio-fieldset ${isHorizontal && "horizontal"}`}>
       <legend>{legend}:</legend>
       {radioButtons.map((button) => (
-        <div>
+        <div key={`radio-${button.id}`}>
           <input
             type="radio"
             id={button.id}
             name={radioName}
             value={button.label.toLocaleLowerCase()}
+            {...props}
           />
           <label className="radio-label" htmlFor={button.id}>
             {button.label}

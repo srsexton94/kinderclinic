@@ -5,6 +5,7 @@ import "./TextInput.css";
 
 interface TextInputProps {
   label: string;
+  name: string;
   errorText?: string;
   helpText?: string;
   type?: "text" | "password";
@@ -13,10 +14,12 @@ interface TextInputProps {
 
 function TextInput({
   label,
+  name,
   errorText,
   helpText,
   type = "text",
   isFull = false,
+  ...props
 }: TextInputProps) {
   const inputId = useId();
   const helpId = useId();
@@ -33,8 +36,12 @@ function TextInput({
           className={isFull ? "full" : ""}
           placeholder=" "
           type={type}
+          name={name}
+          {...props}
         />
-        <label className="text-input-label" htmlFor={inputId}>{label}</label>
+        <label className="text-input-label" htmlFor={inputId}>
+          {label}
+        </label>
       </div>
       {errorText && (
         <span id={errorId} className="error">
