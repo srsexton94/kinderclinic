@@ -3,7 +3,11 @@ import "./App.css";
 import logo from "./assets/kinderclinic-logo.png";
 import api from "./api";
 import { seedLocalDatabase } from "./api/data/seed";
-import { type Patient, type PatientData } from "./api/data/patients";
+import {
+  type Appointment,
+  type Patient,
+  type PatientData,
+} from "./api/data/patients";
 import PatientList from "./components/PatientList/PatientList";
 import SkeletonScreen from "./components/SkeletonScreen/SkeletonScreen";
 import PatientForm from "./components/PatientForm/PatientForm";
@@ -32,9 +36,28 @@ function App() {
       .catch((err) => setError(err));
   };
 
+  const putData = async (patient: Patient, newAppointment: Appointment) => {
+    api
+      .put("/api/patients", {
+        ...patient,
+        dob: new Date(patient.dob),
+        appointments: [...patient.appointments!, newAppointment],
+      })
+      .catch((err) => setError(err));
+  };
+
   const handleSubmit = (data: PatientData) => {
     setIsLoading(true);
     postData(data);
+    fetchData();
+  };
+
+  const onCreateAppointment = (
+    patient: Patient,
+    newAppointment: Appointment
+  ) => {
+    setIsLoading(true);
+    putData(patient, newAppointment);
     fetchData();
   };
 
@@ -52,7 +75,10 @@ function App() {
       ) : (
         <>
           <PatientForm onSubmit={handleSubmit} />
-          <PatientList patients={patients} />
+          <PatientList
+            patients={patients}
+            onCreateAppointment={onCreateAppointment}
+          />
         </>
       )}
     </>

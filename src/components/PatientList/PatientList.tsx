@@ -1,13 +1,21 @@
-import type { Patient } from "../../api/data/patients";
+import type { Appointment, Patient } from "../../api/data/patients";
 import PatientCard from "../PatientCard/PatientCard";
 import "./PatientList.css";
 
-function PatientList({ patients }: { patients: Patient[] }) {
+interface PatientListProps {
+  patients: Patient[];
+  onCreateAppointment: (patient: Patient, newAppointment: Appointment) => void;
+}
+
+function PatientList({ patients, onCreateAppointment }: PatientListProps) {
   return (
     <ul className="list">
       {patients.map((patient) => (
         <li key={patient.id}>
-          <PatientCard patient={patient} />
+          <PatientCard
+            patient={patient}
+            onCreateAppointment={onCreateAppointment}
+          />
         </li>
       ))}
     </ul>

@@ -1,6 +1,11 @@
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
-import { getPatientById, getPatients, postPatient } from "./patients";
+import {
+  getPatientById,
+  getPatients,
+  postPatient,
+  putPatient,
+} from "./patients";
 import { createPatient } from "./data/patients";
 
 const api = axios.create();
@@ -24,6 +29,11 @@ adapter.onPost("/api/patients").reply(function (config) {
   const patient = createPatient(JSON.parse(config.data));
   postPatient(JSON.parse(config.data));
   return [200, patient];
+});
+
+adapter.onPut("/api/patients").reply(function (config) {
+  putPatient(JSON.parse(config.data));
+  return [200];
 });
 
 export default api;

@@ -29,3 +29,18 @@ export const postPatient = (newPatient: Patient): Patient | undefined => {
   setDatabaseTable("patients", patients);
   return newPatient;
 };
+
+export const putPatient = (modifiedPatient: Patient): Patient | undefined => {
+  const patients = getDatabaseTable("patients");
+  if (!patients) {
+    console.log("No patients table found");
+    return;
+  }
+  const patientIdx = patients.findIndex(
+    (patient: Patient) => patient.id === modifiedPatient.id
+  );
+  patients[patientIdx].appointments = modifiedPatient.appointments;
+  patients[patientIdx].modifiedAt = new Date();
+  setDatabaseTable("patients", patients);
+  return patients[patientIdx];
+};

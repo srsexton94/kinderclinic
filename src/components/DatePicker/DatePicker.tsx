@@ -1,14 +1,18 @@
 import { useId } from "react";
 import "./DatePicker.css";
 
+interface DatePickerProps {
+  name: string;
+  includeTime?: boolean;
+  label?: string;
+}
+
 function DatePicker({
   label = "Select Date",
+  includeTime = false,
   name,
   ...props
-}: {
-  label?: string;
-  name: string;
-}) {
+}: DatePickerProps) {
   const inputId = useId();
 
   return (
@@ -16,7 +20,12 @@ function DatePicker({
       <label className="date-picker-label" htmlFor={inputId}>
         {label}:
       </label>
-      <input type="date" id={inputId} name={name} {...props}></input>
+      <input
+        type={includeTime ? "datetime-local" : "date"}
+        id={inputId}
+        name={name}
+        {...props}
+      ></input>
     </div>
   );
 }

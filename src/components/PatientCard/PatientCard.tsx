@@ -5,7 +5,12 @@ import "./PatientCard.css";
 import Modal from "../Modal/Modal";
 import { useState } from "react";
 
-function PatientCard({ patient }: { patient: Patient }) {
+interface PatientCardProps {
+  patient: Patient;
+  onCreateAppointment: (patient: Patient, newAppointment: Appointment) => void;
+}
+
+function PatientCard({ patient, onCreateAppointment }: PatientCardProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const age: number =
@@ -14,6 +19,11 @@ function PatientCard({ patient }: { patient: Patient }) {
     patient.appointments?.filter(
       (appt) => new Date(appt.datetime) > new Date()
     ) || [];
+
+  const onSubmit = (newAppointment: Appointment) => {
+    setIsModalOpen(false);
+    onCreateAppointment(patient, newAppointment);
+  };
 
   return (
     <>
@@ -44,7 +54,11 @@ function PatientCard({ patient }: { patient: Patient }) {
         </button>
       </div>
       {isModalOpen && (
-        <Modal patient={patient} onClose={() => setIsModalOpen(false)} />
+        <Modal
+          patient={patient}
+          onClose={() => setIsModalOpen(false)}
+          onSubmit={onSubmit}
+        />
       )}
     </>
   );
