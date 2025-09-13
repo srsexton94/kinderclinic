@@ -41,7 +41,9 @@ function App() {
       .put("/api/patients", {
         ...patient,
         dob: new Date(patient.dob),
-        appointments: [...patient.appointments!, newAppointment],
+        appointments: patient.appointments
+          ? [...patient.appointments, newAppointment]
+          : [newAppointment],
       })
       .catch((err) => setError(err));
   };
